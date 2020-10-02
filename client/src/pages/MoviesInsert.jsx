@@ -67,7 +67,7 @@ class MoviesInsert extends Component {
             email:'',
             time: '',
             item:'',
-            ItemImage:''
+           
         }
     }
 
@@ -102,9 +102,9 @@ class MoviesInsert extends Component {
     // }
 
     handleIncludeMovie = async () => {
-        const { name, address, email, rating ,  time, ItemImage} = this.state
+        const { name, address, email, rating ,  time} = this.state
         const arrayTime = time.split('/')
-        const payload = {  name, address, email, rating,  time ,ItemImage: arrayTime }
+        const payload = {  name, address, email, rating,  time: arrayTime }
 
         await api.insertMovie(payload).then(res => {
             window.alert(`Item inserted successfully`)
@@ -114,7 +114,7 @@ class MoviesInsert extends Component {
                 email:'',
                 rating: '',
                 time: '',
-                ItemImage:'',
+                
             })
         })
     }
@@ -136,7 +136,7 @@ class MoviesInsert extends Component {
 
  
     render() {
-        const { name, rating, time, address, email,ItemImage } = this.state
+        const { name, rating, time, address, email } = this.state
         return (
             <div className="container">
                 <div className="row">

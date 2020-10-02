@@ -66,7 +66,7 @@ class MoviesUpdate extends Component {
             address:'',
             email:'',
             time: '',
-            ItemImage:'',
+            
         }
     }
 
@@ -95,14 +95,14 @@ class MoviesUpdate extends Component {
         const time = event.target.value
         this.setState({ time })
     }
-    handleChangeInputItemImage = async event => {
-        const ItemImage = event.target.value
-        this.setState({ ItemImage })
-    }
+    // handleChangeInputItemImage = async event => {
+    //     const ItemImage = event.target.value
+    //     this.setState({ ItemImage })
+    // }
     handleUpdateMovie = async () => {
-        const { id, name, address, email, rating,  time, ItemImage } = this.state
+        const { id, name, address, email, rating,  time } = this.state
         const arrayTime = time.split('/')
-        const payload = { name, address,email, rating  ,time , ItemImage : arrayTime }
+        const payload = { name, address,email, rating  ,time  : arrayTime }
 
         await api.updateMovieById(id, payload).then(res => {
             window.alert(`Item updated successfully`)
@@ -112,7 +112,7 @@ class MoviesUpdate extends Component {
                 email:'',
                 time: '',
                 rating: '',
-                ItemImage:'',
+                
             })
         })
     }
@@ -126,13 +126,12 @@ class MoviesUpdate extends Component {
             address: movie.data.data.address,
             email: movie.data.data.email,
             rating: movie.data.data.rating,
-            time: movie.data.data.time,
-            ItemImage: movie.data.data.ItemImage.join('/'),
+            time: movie.data.data.time.join('/'),
         })
     }
 
     render() {
-        const { name, rating, time, address, email ,ItemImage} = this.state
+        const { name, rating, time, address, email } = this.state
         return (
             <div className="container">
                 <div className="row">
@@ -197,10 +196,10 @@ class MoviesUpdate extends Component {
 				</div>
 			</div> */}
 
-            <div className="App">
+            {/* <div className="App">
                 <input type="file" onChange={this.handleChangeInputItemImage}/>
-                {/* <button onClick={this.fileUploadHandeler}>Upload</button> */}
-            </div>
+                <button onClick={this.fileUploadHandeler}>Upload</button>
+            </div> */}
 
                 <Button onClick={this.handleUpdateMovie }>Update Item</Button>
                 <CancelButton href={'/movies/list'}>Cancel</CancelButton>
